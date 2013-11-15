@@ -1,14 +1,14 @@
-Webservice connector for Novell Data Synchronizer
-=================================================
+DataSync web service connector
+==============================
 
-This is a simple connector for Novell Data Synchronizer, to connect applications like Novell GroupWise to a REST web service. Using this connector, you can integrate products like GroupWise with a variety of applications, like CRM systems, calendar applications, mail scanners, etc. You can use this connector as a base for custom integrations.
+This is a simple base connector for Novell Data Synchronizer to connect applications like Novell GroupWise to a REST web service. Using this connector, you can integrate products like GroupWise with a variety of applications, like CRM systems, calendar applications, mail scanners, etc. You can use this connector as a base for custom integrations.
 
 Prerequisites
 -------------
 
 To build a succesful connector you'll need at least:
 
-* An installed and configured [Novell Data Synchronizer 1.2.x](http://download.novell.com/Download?buildid=AwGj_CBABEI~) (**not** Mobility Pack)
+* An installed and configured [Novell Data Synchronizer 1.2.x](http://download.novell.com/Download?buildid=AwGj_CBABEI~) (do **not install** Mobility Pack on it!)
 * An editor to edit Python
 * A webservice which you would like to connect
 * SSH connection to the Data Synchronizer service to read logfiles and to restart Data Synchronizer
@@ -25,13 +25,11 @@ Tips
 ----
 
 * Use [multitail](http://www.vanheusden.com/multitail/) to watch the Data Synchronizer log files.
-* Restart the Data Synchronizer engine using the following commands:
-  ```
-  /etc/init.d/datasync-connectors stop && /etc/init.d/datasync-syncengine stop
-  /etc/init.d/datasync-syncengine start && /etc/init.d/datasync-connectors start
-  ```
+* Restart the Data Synchronizer engine using the following commands:  
+  `/etc/init.d/datasync-connectors stop && /etc/init.d/datasync-syncengine stop`  
+  `/etc/init.d/datasync-syncengine start && /etc/init.d/datasync-connectors start`
 
 License
 -------
 
-The connector provided on GitHub is developed by [InterExperts](http://www.interexperts.nl/) and provided as open source, licensed under the MIT license. Pull requests to enhance this base connector are welcome!
+The connector provided on GitHub is developed by [InterExperts](http://www.interexperts.nl/) and provided as open source, licensed under the MIT license. Pull requests to enhance this connector are welcome!
