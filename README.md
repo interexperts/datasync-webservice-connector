@@ -25,7 +25,7 @@ Tips
 ----
 
 * Use [multitail](http://www.vanheusden.com/multitail/) to watch the Data Synchronizer log files.
-  Use the provided [multitailrc](contrib/multirailrc) to get fancy log files and use a command like:
+  Use the provided [multitailrc](contrib/multitailrc) to get fancy log files and use a command like:
   `multitail -cS dsconnector /var/log/datasync/connectors/default.pipeline1.yourconnector-AppInterface.log`
 * Restart the Data Synchronizer engine using the following commands:  
   `/etc/init.d/datasync-connectors stop && /etc/init.d/datasync-syncengine stop`  
