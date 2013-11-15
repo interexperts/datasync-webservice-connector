@@ -29,6 +29,16 @@ Tips
   `/etc/init.d/datasync-connectors stop && /etc/init.d/datasync-syncengine stop`  
   `/etc/init.d/datasync-syncengine start && /etc/init.d/datasync-connectors start`
 
+Resources
+---------
+
+See for more information about developing a Data Synchronizer connector also:
+
+* [Novell Data Synchronizer Developer Kit](https://www.novell.com/developer/ndk/datasynchronizer.html) for general documentation about
+  Data Synchronizer and developing connectors.
+* [GroupWise Web Service (SOAP)](https://www.novell.com/developer/ndk/groupwise/groupwise_web_service_%28soap%29.html) which is useful
+  when you are developing a connector which interacts with GroupWise.
+
 License
 -------
 
