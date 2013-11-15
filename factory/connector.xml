@@ -1,0 +1,25 @@
+<!-- Connector configuration template -->
+<connector>	
+	<settings>
+		<common>
+			<type>datasync-webservice-connector</type>
+			<caching>disabled</caching>
+			<startup>manual</startup>
+			<enabled>true</enabled>
+			<log>
+				<file>/var/log/datasync/connectors/datasync-webservice-connector.log</file>
+				<level>Info</level>
+				<verbose>off</verbose>
+				<failures>off</failures>
+			</log>
+		</common>
+		<custom>
+			<httpServer>webservice.example.com</httpServer>
+			<httpPort>80</httpPort>
+			<httpUseSSL>false</httpUseSSL>
+			<httpEndPoint>/</httpEndPoint>
+			<httpAuthKey>changeme</httpAuthKey>
+			<gwConnectorID>default.pipeline1.groupwise</gwConnectorID>
+		</custom>
+	</settings>
+</connector>

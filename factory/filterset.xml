@@ -1,0 +1,105 @@
+<filters>
+	<sink>
+		<!-- 
+		pretend there's an imaginary source node here with data flowing from the
+		application itself. in reality we have the app interface connector talking
+		back to the SE over the network. the recipient of that data is the SE's
+		hardcoded invisible SOAP transport:
+		<node>
+			<id>appinterface</id>
+			<nodeClass>groupwise.source</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>engineinterface</next>
+		</node>
+		<node>
+			<id>engineinterface</id>
+			<nodeClass>engine.source.bridgeAppInterfaceToSOAP</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>usermap</next>
+		</node>
+		-->
+		<!-- we do user mapping and filtering first because it prevents irrelevant events early on without unnecessary nodes doing processing -->
+		<node>
+			<id>engineSource</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>eventFilter</next>
+		</node>
+		<node>
+			<id>eventFilter</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>usermapfilter</next>
+		</node>
+		<node>
+			<id>usermapfilter</id>
+			<nodeClass>engine.filter.targetToAI</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>schemamap</next>
+		</node>
+		<node>
+			<id>schemamap</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>applicationSink</next>
+		</node>
+		<node>
+			<id>applicationSink</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next/>
+		</node>
+	</sink>
+	<!-- betweek source and sink you can imagine a "Sync Engine" filter that does all the caching, routing, flow control, synchronization, etc -->
+	<source>
+		<!-- we do user mapping and filtering first because it prevents irrelevant events early on without unnecessary nodes doing processing -->
+		<node>
+			<id>applicationSource</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>schemamap</next>
+		</node>
+		<node>
+			<id>schemamap</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>eventFilter</next>
+		</node>
+		<node>
+			<id>eventFilter</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>usermapfilter</next>
+		</node>
+		<node>
+			<id>usermapfilter</id>
+			<nodeClass>engine.filter.targetFromAI</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>engineSink</next>
+		</node>
+		<node>
+			<id>engineSink</id>
+			<nodeClass>engine.filter.xslt</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next/>
+		</node>
+		<!-- 
+		pretend there's an imaginary source node here with data flowing from the
+		application itself. in reality we have the app interface connector talking
+		back to the SE over the network. the recipient of that data is the SE's
+		hardcoded invisible SOAP transport:
+		<node>
+			<id>engineinterface</id>
+			<nodeClass>engine.sink.bridgeSOAPToAppInterface</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next>appinterface</next>
+		</node>
+		<node>
+			<id>appinterface</id>
+			<nodeClass>groupwise.sink</nodeClass>
+			<nodeVersion>1.0</nodeVersion>
+			<next/>
+		</node>
+		-->
+	</source>
+</filters>
